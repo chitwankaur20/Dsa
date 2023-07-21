@@ -1,16 +1,34 @@
 class Solution {
 public:
-    void moveZeroes(vector<int>& nums) {
-       if(nums.size()==1)
-       return;
-       int l = 0;
-       int r = 0;
-       while(r<nums.size()){
-           if(nums[r]!=0){
-               swap(nums[l],nums[r]);
-               l++;
-           }
-           r++;
-       }
+    bool isValid(string s) {
+        stack<char> stk;
+        for(char c : s){
+            if(c == '(' || c == '{' || c == '['){
+                stk.push(c);
+            }
+            else{
+                if(!stk.empty()){
+                if(c == ')' && stk.top() == '('){
+                stk.pop();
+                }
+                else if(c == '}' && stk.top() == '{'){
+                stk.pop();
+                }
+                else if(c == ']' && stk.top() == '['){
+                stk.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+                
+            }
+            
+        }
+      return stk.empty();
     }
+    
 };
